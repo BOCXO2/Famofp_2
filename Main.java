@@ -1,52 +1,54 @@
-// 25. Определить, становится ли симметричной
-// (относительно главной диагонали) заданная матрица после замены на число 0 каждого локального максимума.
-//* Работу выполнил Опришко Станислав 5 группа 2 курс.(в данной задаче, уже поработал с вводом данных через консоль
-// а не через рандомайзер.)
-import java.util.Scanner; // Использовал библиотеку Scanner, для считывания ввода с клавиатуры данных.
+// 11. Определить норму строк заданной матрицы.
+// Работу выполнил Опришко Станислав 5 группа 2 курс
+// Матрица создается через рандомайзер, а не при вводе определенной матрицы.
+
+import java.util.Arrays;
+import java.util.Random;
 
 public class Main {
+    final static Random rand = new Random();
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        int[][] arr = createArray(7, 8, -100, 100);
+        toConsole(arr);
+        System.out.println("Norm ||A||m = " + maxCols(sumRows(arr)));
+    }
 
-        System.out.print("Введите размерность матрицы N: ");
-        int N = scanner.nextInt();
-        int[][] a = new int[N][N];
-
-        System.out.println("Введите элементы матрицы:");
+    public static int[][] createArray(int N, int M, int a, int b) {
+        int[][] arr = new int[N][M];
         for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                a[i][j] = scanner.nextInt();
+            for (int j = 0; j < M; j++) {
+                arr[i][j] = rand.nextInt((b - a) + 1) + a;
             }
         }
+        return arr;
+    }
 
-        // Заменяем на число 0 каждый локальный максимум
-        int j_max;
-        for (int i = 0; i < N; i++) {
-            j_max = 0;
-            for (int j = 1; j < N; j++) {
-                if (a[i][j_max] < a[i][j]) {
-                    j_max = j;
-                }
-            }
-            a[i][j_max] = 0;
-        }
-
-        // Проверяем симметричность (относительно главной диагонали)
-        boolean fl = true;
-        for (int i = 1; i < N; i++) {
-            for (int j = 0; j < i; j++) {
-                if (a[i][j] != a[j][i]) {
-                    fl = false;
-                }
+    public static int[] sumRows(int[][] arr) {
+        int[] array = new int[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                array[i] += Math.abs(arr[i][j]);
             }
         }
+        System.out.println(Arrays.toString(array));
+        return array;
+    }
 
-        if (fl) {
-            System.out.println("Матрица симметрична относительно главной диагонали");
-        } else {
-            System.out.println("Матрица не симметрична относительно главной диагонали");
+    public static void toConsole(int[][] arr) {
+        for (int[] ints : arr) {
+            for (int anInt : ints) {
+                System.out.print(anInt + " ");
+            }
+            System.out.println();
         }
+    }
 
-        scanner.close();
+    public static int maxCols(int[] arr) {
+        int max = 0;
+        for (int val : arr) {
+            if (val > max) max = val;
+        }
+        return max;
     }
 }

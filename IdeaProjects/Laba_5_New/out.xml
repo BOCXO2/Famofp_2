@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Companies>
+    <Company>
+        <name>ЧУП Экспресс Логистика</name>
+        <shortTitle>ЭкспрессЛогистика</shortTitle>
+        <dateUpdate>2021-08-19</dateUpdate>
+        <address>Брест, ул. Складская, 10</address>
+        <dateFoundation>2018-09-20</dateFoundation>
+        <countEmployees>30</countEmployees>
+        <auditor>Аудитор3</auditor>
+        <phone>+375292222222</phone>
+        <email>logistics@example.com</email>
+        <branch>Логистика</branch>
+        <activity>Транспортировка</activity>
+        <link>www.logistics.com</link>
+    </Company>
+</Companies>
